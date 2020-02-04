@@ -221,7 +221,7 @@ This Bootcamp is an exercise in test driven development (TDD). When you first st
     ##### YOU MUST USE THE CONFIG.JS, DO NOT HARDCODE YOUR URI OR API KEY ANYWHERE. YOU MUST PLACE EACH VALUE SOLELY IN THE CONFIG.JS -- NO EXCEPTIONS
 
 2. Complete the app configuration in `server.js`. 
-  - It should serve the static files found in the `public` folder when a user makes a request to the path `/`. [Refer to this documentation](http://expressjs.com/en/starter/static-files.html) for help. 
+  - It should serve the static files found in the `client` folder when a user makes a request to the path `/`. [Refer to this documentation](http://expressjs.com/en/starter/static-files.html) for help. 
   - It should use the listings router for requests going to the `/api/listings` path. 
   - Last it should direct users to the client side `index.html` file for requests to any other path
   - now run `nodemon server.js` to see how our server is working and navigate to `http://localhost:5000` in the browser. Try some of the routes and see what happens. Right now, we only serve up index.html and the server hangs for all the other routes in our express.js file
