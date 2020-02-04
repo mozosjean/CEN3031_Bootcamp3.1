@@ -213,7 +213,7 @@ This Bootcamp is an exercise in test driven development (TDD). When you first st
 
 #### To Do List
 
-> Before starting, make sure you ALWAYS installed your dependencies. This means simply run `npm i` the very first time you open it or anytime you add new dependencies to your project.
+> Before starting, make sure you ALWAYS installed your dependencies. This means simply run `npm i` the very first time you open it or anytime you add new dependencies to your project. In this case we use one dependency from the command line and need to install them globally. To do this run `npm install jest -g`.
 
 1. Create a new file called `config.js` within the `server/config` directory using the config.example.js
     - Add in your MongoDB Atlas URI (or localhost if you prefer this)
@@ -224,7 +224,7 @@ This Bootcamp is an exercise in test driven development (TDD). When you first st
   - It should serve the static files found in the `client` folder when a user makes a request to the path `/`. [Refer to this documentation](http://expressjs.com/en/starter/static-files.html) for help. 
   - It should use the listings router for requests going to the `/api/listings` path. 
   - Last it should direct users to the client side `index.html` file for requests to any other path
-  - now run `nodemon server.js` to see how our server is working and navigate to `http://localhost:5000` in the browser. Try some of the routes and see what happens. Right now, we only serve up index.html and the server hangs for all the other routes in our express.js file
+  - now run `npm start` (note that this is now using nodemon instead of node to run your server. This package allows the server to refresh whenever changes to the file are made) to see how our server is working and navigate to `http://localhost:5000` in the browser. Try some of the routes and see what happens. Right now, we only serve up index.html and the server hangs for all the other routes in our express.js file
 
 3. In MongoDB Atlas, delete your database from Bootcamp2 so you can start clean. Setup an empty database to begin our development.
 
