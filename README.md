@@ -105,7 +105,7 @@ app.all('/*', (req, res) => {
 Looking for information on using Express as router middleware take a look at the [documentation](https://expressjs.com/en/guide/using-middleware.html#middleware.router). Also take a look at the documentation on [request](https://expressjs.com/en/4x/api.html#req) and [response](https://expressjs.com/en/4x/api.html#res) objects.
 
 ### Server-side Controllers
-Express can also be used to create server-side controllers that contain the business logic for processing a resource. The controller will contain methods for handling all the [CRUD operations](https://scotch.io/tutorials/using-mongoosejs-in-node-js-and-mongodb-applications). In your application, you many have multiple controllers that perform different functions on different resources. In this bootcamp, we have two controllers that help to manage coordinates and the listings. Check out this [tutorial](https://www.callicoder.com/node-js-express-mongodb-restful-crud-api-tutorial/) with code example to help you get started on developing the `listings.server.controller.js` and `coordinates.server.controller.js` files for this bootcamp.
+Express can also be used to create server-side controllers that contain the business logic for processing a resource. The controller will contain methods for handling all the [CRUD operations](https://scotch.io/tutorials/using-mongoosejs-in-node-js-and-mongodb-applications). In your application, you many have multiple controllers that perform different functions on different resources. In this bootcamp, we have two controllers that help to manage coordinates and the listings. Check out this [tutorial](https://www.callicoder.com/node-js-express-mongodb-restful-crud-api-tutorial/) with code example to help you get started on developing the `listingsController.js` and `coordinatesController.js` files for this bootcamp.
 
 This is an example update function for a contact controller from a [CRUD API tutorial](https://medium.com/@dinyangetoh/how-to-build-simple-restful-api-with-nodejs-expressjs-and-mongodb-99348012925d)
 ``` Javascript
@@ -140,7 +140,7 @@ When using `import` instead of `require`, use `export default <variable>` instea
 https://developer.mozilla.org/en-US/docs/web/javascript/reference/statements/export
 https://medium.com/@etherealm/named-export-vs-default-export-in-es6-affb483a0910
 
-In Bootcamp #2, `export` is used to create a custom object in the `ListingSchema.js` file, exporting it as `Listing` at the end of the file. In Bootcamp #3, this file is renamed `listings.server.model.js`.
+In Bootcamp #2, `export` is used to create a custom object in the `ListingModel.js` file, exporting it as `Listing` at the end of the file. In Bootcamp #3, this file is renamed `ListingModel.js`.
 ```javascript
 /* Import mongoose and define any variables needed to create the schema */
 import mongoose from 'mongoose';
@@ -156,11 +156,11 @@ const Listing = mongoose.model('Listing', listingSchema);
 /* Export the model to make it avaiable to other parts of your Node application */
 export default Listing;
 ```
-In Bootcamp #3, export is used to implement a set of functions in `listings.server.controller.js`.
+In Bootcamp #3, export is used to implement a set of functions in `listingsController.js`.
 
 ```javascript
 import mongoose from 'mongoose';
-import Listing from '../models/listings.server.model.js';
+import Listing from '../models/ListingModel.js';
     
 /* Show the current listing */
 export const read = (req, res) => {
@@ -178,7 +178,7 @@ export const update = (req, res) => {
  };
 ```
 **Now the questions is how do you use these modules?** 
-You **Import modules** at the top of the files in which you want to use them. Notice at the top of this file, `listings.server.controller.js` we have imported the Lisitngs model as a variable `import Listing from '../models/listings.server.model.js';` 
+You **Import modules** at the top of the files in which you want to use them. Notice at the top of this file, `listingsController.js` we have imported the Lisitngs model as a variable `import Listing from '../models/ListingModel.js';` 
 
 This provides the controller the access to the listing model. Using `import *` means you are importing all named exports. `as` lets you assign these imported variables a name. `from` specifies what package or file to import from (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import).
 
@@ -202,7 +202,7 @@ In `server/routes/listingsRouter.js`, you will find code that specifies the requ
 
 ### Part 1 - Submit PDF in Canvas to Bootcamp #3
 Create a diagram of how the different parts of the server interact with one another and add descriptive text as needed to demonstrate your understanding of the functionality of each file and their relationships to each other. Specifially make note of: 
-   - the relationship between server.js, app.js, and express.js and the router file. With your starting point in the application being `server.js`
+   - the relationship between server.js and the router file. With your starting point in the application being `server.js`
     - how the router makes use of the controllers and model to determine the flow of request handling. Trace through each routes in `listingsRouter.js` as the basis of your diagram. Consider makine a sequence diagram (http://www.agilemodeling.com/artifacts/sequenceDiagram.htm) to help you communicate the flow of calls and data. 
    - the content defined in each controller and their roles in the application
     - how middleware is used throughout the application to modularize the code (e.g., (application-level, routing, controller, etc)
@@ -224,21 +224,21 @@ This Bootcamp is an exercise in test driven development (TDD). When you first st
   - It should serve the static files found in the `client` folder when a user makes a request to the path `/`. [Refer to this documentation](http://expressjs.com/en/starter/static-files.html) for help. 
   - It should use the listings router for requests going to the `/api/listings` path. 
   - Last it should direct users to the client side `index.html` file for requests to any other path
-  - now run `npm start` (note that this is now using nodemon instead of node to run your server. This package allows the server to refresh whenever changes to the file are made) to see how our server is working and navigate to `http://localhost:5000` in the browser. Try some of the routes and see what happens. Right now, we only serve up index.html and the server hangs for all the other routes in our express.js file
+  - now run `npm start` (note that this is now using nodemon instead of node to run your server. This package allows the server to refresh whenever changes to the file are made) to see how our server is working and navigate to `http://localhost:5000` in the browser. Try some of the routes and see what happens. Right now, we only serve up index.html and the server hangs for all the other routes in our server.js file
 
 3. In MongoDB Atlas, delete your database from Bootcamp2 so you can start clean. Setup an empty database to begin our development.
 
 4. Implement the `ListingModel.js` file. This is our mongoose model for our database, it should have the same schema as the previous bootcamp.
-    - **before you start coding** navigate to `server/tests` folder, review and **run** the model test `jest listing.server.model.test.js`  
+    - **before you start coding** navigate to `server` directory, review and **run** the model test `jest listings.server.model.test.js`  
     *note:* The functionality your code needs to pass, which tests pass, and the content of your database
     - **now open** the `ListingModel.js` file, you'll notice that this file looks a lot like the `ListingModel.js` file from Bootcamp Assignment #2 because it is exactly the same so it should be easy to implement the functionality.
-    - **test your implementation** again by running the tests found in `jest listing.server.model.test.js` 
+    - **test your implementation** again by running the tests `jest listings.server.model.test.js` 
 
-5. Reinitialize your database by running `jest listings.restart.test.js` while cd'd in the `server/tests` directory. Check your database and make sure you have 147 documents before proceeding.
+5. Reinitialize your database by running `jest listings.restart.test.js` while cd'd in the `server` directory. Check your database and make sure you have 147 documents before proceeding.
 
 6. Implement the request handlers `update`, `delete`, `list` in `listingsController.js`
-    - **implement functionality**  `update`, `delete`, `list` in `listings.server.controller.js` see notes and tutorials identified earlier in this README file for help.
-    **You may want to use [postman](https://www.getpostman.com/downloads/) to develop and manually test your update, delete, list routes** (*Note:* You will have to start your server to use Postman run `node server.js`. )
+    - **implement functionality**  `update`, `delete`, `list` in `listingsController.js` see notes and tutorials identified earlier in this README file for help.
+    **You may want to use [postman](https://www.getpostman.com/downloads/) to develop and manually test your update, delete, list routes** (*Note:* You will have to start your server to use Postman run `nodemon server/server`. )
     (i)  The following should GET a single listing by ID, copy and paste a single entry "id" from your database to replace the <ID> tag `http://localhost:5000/api/listings/<ID>`
     (ii) The following should GET all the listing - `http://localhost:5000/api/listings`
     (iii) Try also to test out your post and update requests.
