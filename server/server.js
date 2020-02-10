@@ -56,6 +56,7 @@ app.all('/*', (req, res) => {
        If no path segments are passed, path.resolve() will return the absolute path of the current working directory.
     */
     //res.sendFile(path.resolve(...));
+    res.sendFile(path.resolve('client/index.html'));
 });
 
 app.listen(config.port, () => console.log(`App now listening on port ${config.port}`));
