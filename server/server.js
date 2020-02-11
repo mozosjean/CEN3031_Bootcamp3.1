@@ -35,7 +35,7 @@ app.use('/', express.static('./../../client'));
    use the listings router middleware for requests to the api
    check the variables list above
 */
-app.use('/api/listings/');
+app.use('/api/listings/', listingsRouter);
 
 
 /* Request Handler for coordinates

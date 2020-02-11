@@ -23,7 +23,14 @@ export default (req, res, next) => {
               To access the coordinates, you can JSON.parse(body) and find which attribute(s) store some sort of latitude and longitude coordinate pair.
               Make SURE to store in req.results.
             */
+        if (error){
+            res.status(400).send(err);
+        }
+        else{
+            var coordData = JSON.parse(body);
+            req.results = coordData.results[0].geometry;
             next();
+        }
         });
     } else {
         next();
